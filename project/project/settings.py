@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
+    "django_apscheduler"
 ]
 
 SITE_ID = 1
@@ -80,14 +81,17 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # `allauth` обязательно нужен этот процессор
                 'django.template.context_processors.request',
             ],
         },
     },
 ]
+
+# Этого раздела может не быть, добавьте его в указанном виде.
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
@@ -137,6 +141,27 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "shehovtsovandrew"
+EMAIL_HOST_PASSWORD = "wnwsoiqrkemrzvbs"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = "shehovtsovandrew@yandex.ru"
+
+
+SERVER_EMAIL = "shehovtsovandrew@yandex.ru"
+MANAGERS = (
+    ('Ivan', 'ivan@yandex.ru'),
+    ('Petr', 'petr@yandex.ru'),
+)
+
+ADMINS = (
+    ('anton', 'anton@yandex.ru'),
+)
 
 
 # Static files (CSS, JavaScript, Images)

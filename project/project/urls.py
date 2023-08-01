@@ -10,5 +10,6 @@ urlpatterns = [
 
    path("accounts/", include("allauth.urls")),
 
+   path('', include('simpleapp.urls')),
 
 ]
