@@ -15,7 +15,7 @@ from django.http import HttpResponse
 from django.views import View
 from .tasks import hello, printer, complete_order
 from django.views.generic import TemplateView, CreateView
-
+from django.views.decorators.cache import cache_page
 
 
 @login_required
@@ -172,3 +172,4 @@ def take_order(request, oid):
     order.time_out = datetime.now()
     order.save()
     return redirect('/')
+
